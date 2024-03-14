@@ -34,7 +34,7 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    w = QueryManager(
+    qm = QueryManager(
         input_dir=args.input_dir,
         output_dir=args.output_dir,
         name=args.model_name,
@@ -44,5 +44,5 @@ if __name__ == "__main__":
         failure_limit=args.failure_limit,
     )
     if not args.recover_only:
-        w.live_display()
-    w.recover_result()
+        qm.live_display()
+    qm.recover_result()
