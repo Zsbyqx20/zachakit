@@ -1,0 +1,29 @@
+[project]
+name = "zachakit"
+version = "0.1.0"
+description = "Python toolkit maintained by Zacharyvixx."
+authors = [{ name = "Zsbyqx20", email = "zacharyvixx@hotmail.com" }]
+dependencies = [
+    "openai>=1.14.0",
+    "rich>=13.7.1",
+    "tiktoken>=0.6.0",
+    "python-dotenv>=1.0.1",
+    "black>=24.2.0",
+    "pydantic>=2.6.4",
+    "bidict>=0.23.1",
+    "socksio>=1.0.0",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.black]
+line-length = 125
