@@ -28,7 +28,7 @@ class Query(BaseModel):
     message_param: List[ChatCompletionMessageParam]
     temperature: float = 0.5
     debug: bool = False
-    run_limit: int = 10
+    retry_limit: int = 10
     force_fail: bool = False
 
     def query(self, client: OpenAI, enc: Encoding = None):
@@ -47,9 +47,9 @@ class Query(BaseModel):
         return message, usage, success
 
     def _query(self, client: OpenAI):
-        run_times = 0
+        retry_times = 0
         success = None
-        while run_times < self.run_limit:
+        while retry_times < self.retry_limit:
             try:
                 completion = client.chat.completions.create(
                     model=self.name,
@@ -65,7 +65,7 @@ class Query(BaseModel):
                 success = True
                 break
             except:
-                run_times += 1
+                retry_times += 1
         else:
             success = False
             message = ChatCompletionMessage(content="Fail.", role="assistant")

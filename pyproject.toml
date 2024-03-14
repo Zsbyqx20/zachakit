@@ -25,5 +25,8 @@ build-backend = "pdm.backend"
 [tool.pdm]
 distribution = true
 
+[tool.pdm.build]
+excludes = ["assets", "**/*.md"]
+
 [tool.black]
 line-length = 125

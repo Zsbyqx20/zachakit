@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 
 
 def parse_args():
-    parser = ArgumentParser("query.py")
+    parser = ArgumentParser("python -m zachakit.query")
     parser.add_argument(
         "-i", "--input-dir", required=True, type=str, help="Directory containing json line files used for query."
     )
