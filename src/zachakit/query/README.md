@@ -42,7 +42,22 @@ Every line of the `.jsonl` is a dict with a key called `message_param`. That's i
 
 </details>
 
+### ❗️Set OpenAI key in `.env` file
 
+If you are going to use your own api key, this step could be very important.
+
+> If you want to use Azure service provided by Microsoft, you can skip this section, since needed environment variables are all set on your system.
+
+To ensure the secret key will not be uploaded to the Internet accidentally, I utilize 
+[python-dotenv](https://github.com/theskumar/python-dotenv) for convenient environment variable management.
+
+To start with, you need to edit a `.env` file in your current workspace path, with the content below:
+```bash
+OPENAI_API_KEY="your-api-key"
+BASE_URL="your-base-url"
+```
+
+> If you do not know what `BASE_URL` means, you may not need it. It should be specified if you buy your key from a third-party platform.
 
 ### Run the program
 
