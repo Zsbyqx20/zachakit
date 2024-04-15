@@ -10,7 +10,7 @@
 
 ## 🛠️ Installation
 ```text
-pip install git+https://github.com/Zsbyqx20/Droidbot-QueryToolBox.git@v0.1.1
+pip install git+https://github.com/Zsbyqx20/zachakit.git@v0.1.1
 ```
 
 > If there does exists the need to maintain more than 3 modules and frequent updates, I will also publish it to PyPI 😆.
