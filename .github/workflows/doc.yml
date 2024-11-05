@@ -1,0 +1,45 @@
+name: doc 
+on:
+  push:
+    branches:
+      - master 
+      - main
+permissions:
+  contents: write
+jobs:
+  change-detection:
+    runs-on: ubuntu-latest
+    outputs:
+      doc-files: ${{ steps.filter.outputs.doc-files }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: change-detect
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            doc-files:
+              - "docs/**/*"
+              - "mkdocs.yml"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: change-detection
+    if: ${{ needs.change-detection.outputs.doc-files == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v4
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material 
+      - run: mkdocs gh-deploy --force
