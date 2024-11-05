@@ -4,6 +4,7 @@ on:
     branches:
       - master 
       - main
+      - action
 permissions:
   contents: write
 jobs:

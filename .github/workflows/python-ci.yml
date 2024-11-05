@@ -4,10 +4,12 @@ on:
     branches:
       - master
       - main
+      - action
   pull_request:
     branches:
       - master
       - main
+      - action
 
 jobs:
   python-ci:
